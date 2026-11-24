@@ -1,0 +1,9 @@
+@tailwind base;@tailwind components;@tailwind utilities;
+body{@apply bg-midnight text-warm font-sans antialiased;background-image:radial-gradient(60rem 30rem at 50% -10%,#200040,transparent)}
+.card{@apply rounded-2xl border border-royal/60 bg-plum/70 p-5;box-shadow:0 0 40px -18px #8C18E8}
+.btn{@apply rounded-xl px-5 py-3 font-semibold transition disabled:opacity-40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-magenta}
+.btn-p{@apply btn bg-violet text-warm hover:shadow-[0_0_24px_#8C18E8]}
+.btn-g{@apply btn border border-royal text-lavender hover:text-warm}
+.inp{@apply w-full rounded-xl border border-royal bg-midnight/70 px-4 py-3 text-warm placeholder:text-lavender/60 focus:border-magenta focus:outline-none}
+.flip{perspective:1000px}.face{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}

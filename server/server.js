@@ -1,0 +1,16 @@
+import 'dotenv/config';
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
+import publicRoutes from './routes/public.js';
+import adminRoutes from './routes/admin.js';
+const app = express();
+app.use(helmet(), cors({ origin: process.env.CLIENT_ORIGIN }), express.json({ limit: '50kb' }));
+app.use('/api/admin/login', rateLimit({ windowMs: 15 * 60e3, max: 10 }));
+app.use('/api/submissions', rateLimit({ windowMs: 60e3, max: 30 }), publicRoutes);
+app.use('/api/admin', adminRoutes);
+app.use((err, _q, res, _n) => { console.error(err); res.status(500).json({ error: 'Server error' }); });
+await mongoose.connect(process.env.MONGO_URI);
+app.listen(process.env.PORT || 5000, () => console.log('SOLACE API running'));
