@@ -49,7 +49,7 @@ function Quiz({ answers, setAnswers, next, back }) {
 
 function Reflect({ refl, setRefl, send, back, busy, err }) {
   return (<div><h2 className="text-3xl font-bold">Beyond the Numbers</h2>
-    <p className="mb-6 mt-1 text-lavender">Take a moment to think beyond your score. These questions are optional.</p>
+    <p className="mb-6 mt-1 text-lavender">Take a moment to think beyond your score.</p>
     {REFLECTIONS.map((q, i) => (<label key={i} className="mb-5 block"><span className="font-ml mb-2 block">{q}</span>
       <textarea rows={5} maxLength={2000} className="inp font-ml" value={refl[i] || ''} onChange={(e) => { const r = [...refl]; r[i] = e.target.value; setRefl(r); }} /></label>))}
     {err && <p role="alert" className="mb-3 text-magenta">{err}</p>}
