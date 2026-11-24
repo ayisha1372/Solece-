@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://solece-backend.onrender.com/api/:path*"
+    }
+  ]
+}

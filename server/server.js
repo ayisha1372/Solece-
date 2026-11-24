@@ -12,5 +12,9 @@ app.use('/api/admin/login', rateLimit({ windowMs: 15 * 60e3, max: 10 }));
 app.use('/api/submissions', rateLimit({ windowMs: 60e3, max: 30 }), publicRoutes);
 app.use('/api/admin', adminRoutes);
 app.use((err, _q, res, _n) => { console.error(err); res.status(500).json({ error: 'Server error' }); });
+import dns from 'node:dns';
+
+dns.setServers(['8.8.8.8']);
+
 await mongoose.connect(process.env.MONGO_URI);
 app.listen(process.env.PORT || 5000, () => console.log('SOLACE API running'));
