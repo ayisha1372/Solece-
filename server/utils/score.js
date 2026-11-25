@@ -1,21 +1,21 @@
 
 import { CATEGORIES, EVALUATIONS } from '../config/solace.js';
 
-// Questions 13 and 14 use normal scoring.
-// All other questions use reverse scoring.
-const NORMAL_SCORING_QUESTIONS = [13, 14];
+const REVERSED_QUESTIONS = [13, 14];
 
 export function score(answers) {
-  const categoryScores = {};
-  let total = 0;
-
   const scoredAnswers = answers.map((answer, index) => {
     const questionNumber = index + 1;
 
-    return NORMAL_SCORING_QUESTIONS.includes(questionNumber)
-      ? answer
-      : 6 - answer;
+    if (REVERSED_QUESTIONS.includes(questionNumber)) {
+      return 6 - answer;
+    }
+
+    return answer;
   });
+
+  const categoryScores = {};
+  let total = 0;
 
   for (const c of CATEGORIES) {
     categoryScores[c.key] = scoredAnswers
